@@ -1,10 +1,14 @@
 /**
+ * @typedef {{dispose: () => void}} Disposable
  * @param {string | URL} filename
  * @param {number} bufferSize
- * @returns {(...args: any[]) => any}
+ * @returns {Function & Disposable}
  */
-export function createSyncFn(filename: string | URL, bufferSize?: number): (...args: any[]) => any;
+export function createSyncFn(filename: string | URL, bufferSize?: number): Function & Disposable;
 /**
  * @param {(...args: any[]) => Promise<any>} workerAsyncFn
  */
 export function runAsWorker(workerAsyncFn: (...args: any[]) => Promise<any>): void;
+export type Disposable = {
+    dispose: () => void;
+};

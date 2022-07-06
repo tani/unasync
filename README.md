@@ -24,6 +24,7 @@ runAsWorker(async (x) => {
 import { createSyncFn } from "unasync";
 const syncFn = createSyncFn(new URL("./worker.mjs", import.meta.url))
 console.log(syncFn(1)) // 2
+syncFn.dispose() // terminate the worker thread
 ```
 
 ## Technical Details

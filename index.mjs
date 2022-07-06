@@ -1,21 +1,20 @@
 // (c) 2022 TANIGUCHI Masaya https://git.io/mit-license.
 import Worker from "web-worker"
 import * as flatted from "flatted"
-
 /**
+ * @typedef {{dispose: () => void}} Disposable
  * @param {string | URL} filename 
  * @param {number} bufferSize 
- * @returns {(...args: any[]) => any}
+ * @returns {Function & Disposable}
  */
 export function createSyncFn(filename, bufferSize = 64 * 1024) {
-  return function syncFn(...args) {
+  const worker = new Worker(filename, { type: 'module' })
+  function syncFn(...args)  {
     const buffer = new SharedArrayBuffer(bufferSize)
     const semaphore = new Int32Array(buffer)
-    const worker = new Worker(filename, { type: 'module' })
     worker.postMessage({ args, buffer })
     worker.addEventListener('error', (err) => { throw err })
     Atomics.wait(semaphore, 0, 0)
-    worker.terminate()
     let length = semaphore[0]
     let didThrow = false
     if (length < 0) {
@@ -30,6 +29,10 @@ export function createSyncFn(filename, bufferSize = 64 * 1024) {
     }
     return data
   }
+  syncFn.dispose = function dispose() {
+    worker.terminate();
+  }
+  return syncFn
 }
 
 /**

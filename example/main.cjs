@@ -1,2 +1,4 @@
 const { createSyncFn } = require("../index.cjs");
-console.log(createSyncFn(`${__dirname}/worker.cjs`)(1))
+const syncFn = createSyncFn(`${__dirname}/worker.cjs`);
+console.log(syncFn(1))
+syncFn.dispose()
