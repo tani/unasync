@@ -1,6 +1,12 @@
 // (c) 2022 TANIGUCHI Masaya https://git.io/mit-license.
 import Worker from "web-worker"
+import { stringify, parse } from "flatted"
 
+/**
+ * @param {string} filename 
+ * @param {number} bufferSize 
+ * @returns {(...args: any[]) => any}
+ */
 export function createSyncFn(filename, bufferSize = 64 * 1024) {
   const buffer = new SharedArrayBuffer(bufferSize)
   const semaphore = new Int32Array(buffer)
@@ -17,8 +23,8 @@ export function createSyncFn(filename, bufferSize = 64 * 1024) {
       length *= -1
     }
     const decoder = new TextDecoder()
-    const binary = new Uint8Array(buffer).slice(4, 4+length)
-    const data = JSON.parse(decoder.decode(binary))
+    const binary = new Uint8Array(buffer).slice(4, 4 + length)
+    const data = parse(decoder.decode(binary))
     if (didThrow) {
       throw data
     }
@@ -26,18 +32,21 @@ export function createSyncFn(filename, bufferSize = 64 * 1024) {
   }
 }
 
+/**
+ * @param {(...args: any[]) => Promise<any>} workerAsyncFn 
+ */
 export function runAsWorker(workerAsyncFn) {
   addEventListener("message", async (ev) => {
-    const {args, buffer} = ev.data
+    const { args, buffer } = ev.data
     let data, didThrow = false
     try {
-        data = await workerAsyncFn(...args)
+      data = await workerAsyncFn(...args)
     } catch (err) {
-        data = err
-        didThrow = true
+      data = err
+      didThrow = true
     }
     const encoder = new TextEncoder()
-    const binary = encoder.encode(JSON.stringify(data))
+    const binary = encoder.encode(stringify(data))
     new Uint8Array(buffer).set(binary, 4)
     const semaphore = new Int32Array(buffer)
     Atomics.store(semaphore, 0, didThrow ? -binary.length : binary.length)
