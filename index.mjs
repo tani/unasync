@@ -8,9 +8,9 @@ import * as flatted from "flatted"
  * @returns {(...args: any[]) => any}
  */
 export function createSyncFn(filename, bufferSize = 64 * 1024) {
-  const buffer = new SharedArrayBuffer(bufferSize)
-  const semaphore = new Int32Array(buffer)
   return function syncFn(...args) {
+    const buffer = new SharedArrayBuffer(bufferSize)
+    const semaphore = new Int32Array(buffer)
     const worker = new Worker(filename, { type: 'module' })
     worker.postMessage({ args, buffer })
     worker.addEventListener('error', (err) => { throw err })
