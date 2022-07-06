@@ -1,0 +1,34 @@
+{
+  "dependencies": {
+    "web-worker": "^1.2.0"
+  },
+  "name": "unasync",
+  "description": "Synchronously execute asynchronous functions on browsers, Node.js, and Deno",
+  "version": "0.1.0",
+  "main": "index.mjs",
+  "directories": {
+    "example": "example"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tani/unasync.git"
+  },
+  "keywords": [
+    "deasync",
+    "promise",
+    "async",
+    "await",
+    "worker",
+    "web-worker"
+  ],
+  "author": "TANIGUCHI Masaya",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tani/unasync/issues"
+  },
+  "homepage": "https://github.com/tani/unasync#readme"
+}
