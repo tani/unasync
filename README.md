@@ -2,7 +2,6 @@
 
 Synchronously execute asynchronous functions on browsers, Node.js, and Deno.
 This package is a successor of [synckit](https://npmjs.com/package/synckit) and [sync-threads](https://npmjs.com/package/sync-threads).
-These package authors aim at Node.js. We expand the target to run it.
 
 ## Usage
 
