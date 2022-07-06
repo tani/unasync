@@ -3,7 +3,7 @@ import Worker from "web-worker"
 import * as flatted from "flatted"
 
 /**
- * @param {string} filename 
+ * @param {string | URL} filename 
  * @param {number} bufferSize 
  * @returns {(...args: any[]) => any}
  */
