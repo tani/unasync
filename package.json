@@ -2,6 +2,7 @@
   "dependencies": {
     "web-worker": "^1.2.0"
   },
+  "type": "module",
   "name": "unasync",
   "description": "Synchronously execute asynchronous functions on browsers, Node.js, and Deno",
   "version": "0.1.0",
