@@ -6,7 +6,7 @@
   "type": "module",
   "name": "unasync",
   "description": "Synchronously execute asynchronous functions on browsers, Node.js, and Deno",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "index.mjs",
   "directories": {
     "example": "example"
