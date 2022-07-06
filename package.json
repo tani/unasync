@@ -1,13 +1,14 @@
 {
   "dependencies": {
+    "esm": "^3.2.25",
     "flatted": "^3.2.6",
     "web-worker": "^1.2.0"
   },
-  "type": "module",
   "name": "unasync",
   "description": "Synchronously execute asynchronous functions on browsers, Node.js, and Deno",
   "version": "0.1.4",
-  "main": "index.js",
+  "main": "index.cjs",
+  "module": "index.mjs",
   "directories": {
     "example": "example"
   },
