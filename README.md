@@ -12,7 +12,7 @@ This package provides two functions `runAsWroekr` and `createSyncFn`.
 
 ```js
 //worker.js
-import { runAsWorker } from "unasync;
+import { runAsWorker } from "unasync";
 runAsWorker(async (x) => {
   await new Promise((resolve) => setTimeout(() => resolve(1), 1000));
   return x + 1
