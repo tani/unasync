@@ -2,18 +2,20 @@
 import * as flatted from "flatted";
 import { Worker } from "@apacheli/web-workers";
 
+type SyncFn = (...args: unknown[]) => unknown
+type AsyncFn = (...args: unknown[]) => Promise<unknown>
+
 /**
- * @typedef {{dispose: () => void}} Disposable
  * @param {string | URL} filename
  * @param {number} bufferSize
- * @returns {Function & Disposable}
+ * @returns {SyncFn & Disposable}
  */
 export function createSyncFn(
   filename: string | URL,
   bufferSize: number = 64 * 1024,
-) {
+): SyncFn & Disposable {
   const worker = new Worker(filename, { type: "module" });
-  const syncFn: Function & Disposable = (...args: unknown[]): unknown => {
+  const syncFn: SyncFn & Disposable = (...args: unknown[]): unknown => {
     const buffer = new SharedArrayBuffer(bufferSize);
     const semaphore = new Int32Array(buffer);
     worker.postMessage({ args, buffer });
@@ -42,10 +44,10 @@ export function createSyncFn(
 }
 
 /**
- * @param {(...args: unknown[]) => Promise<unknown>} workerAsyncFn
+ * @param {AsyncFn} workerAsyncFn
  */
 export function runAsWorker(
-  workerAsyncFn: (...args: unknown[]) => Promise<unknown>,
+  workerAsyncFn: AsyncFn
 ) {
   addEventListener("message", async (ev: any) => {
     const { args, buffer } = ev.data;
