@@ -13,7 +13,7 @@ export function createSyncFn(
   bufferSize: number = 64 * 1024,
 ) {
   const worker = new Worker(filename, { type: "module" });
-  function syncFn(...args) {
+  const syncFn: Function & Disposable = (...args: unknown[]): unknown => {
     const buffer = new SharedArrayBuffer(bufferSize);
     const semaphore = new Int32Array(buffer);
     worker.postMessage({ args, buffer });
@@ -34,7 +34,7 @@ export function createSyncFn(
       throw data;
     }
     return data;
-  }
+  };
   syncFn[Symbol.dispose] = () => {
     worker.terminate();
   };
@@ -42,10 +42,12 @@ export function createSyncFn(
 }
 
 /**
- * @param {(...args: any[]) => Promise<any>} workerAsyncFn
+ * @param {(...args: unknown[]) => Promise<unknown>} workerAsyncFn
  */
-export function runAsWorker(workerAsyncFn: (...args: any[]) => Promise<any>) {
-  addEventListener("message", async (ev) => {
+export function runAsWorker(
+  workerAsyncFn: (...args: unknown[]) => Promise<unknown>,
+) {
+  addEventListener("message", async (ev: any) => {
     const { args, buffer } = ev.data;
     let data, didThrow = false;
     try {
