@@ -1,0 +1,9 @@
+{
+  "name": "@tani/unasync",
+  "version": "1.0.0",
+  "exports": "index.ts",
+  "imports": {
+    "@apacheli/web-workers": "npm:@apacheli/web-workers@^2.0.0",
+    "flatted": "npm:flatted@^3.3.2"
+  }
+}
