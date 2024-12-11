@@ -8,7 +8,7 @@ This package is a successor of [synckit](https://npmjs.com/package/synckit) and
 
 https://jsr.io/@tani/unasync
 
-This package provides two functions `runAsWroekr` and `createSyncFn`.
+This package provides two functions `runAsWorker` and `createSyncFn`.
 
 1. Wrap an asynchronous function by `runAsWorker`
 2. Create a synchronous function by `createSyncFn`
