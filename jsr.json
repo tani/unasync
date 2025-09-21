@@ -1,0 +1,19 @@
+{
+  "name": "@tani/unasync",
+  "version": "1.0.1",
+  "exports": "./index.ts",
+  "publish": {
+    "exclude": [
+      "node_modules",
+      "*.test.ts",
+      "*.spec.ts",
+      "example",
+      ".git",
+      ".gitignore",
+      "package.json",
+      "package-lock.json",
+      "tsconfig.json",
+      "deno.lock"
+    ]
+  }
+}

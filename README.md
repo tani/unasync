@@ -4,6 +4,14 @@ Synchronously execute asynchronous functions on browsers, Node.js, and Deno.
 This package is a successor of [synckit](https://npmjs.com/package/synckit) and
 [sync-threads](https://npmjs.com/package/sync-threads).
 
+## Features
+
+- ✅ **Zero dependencies** - No external runtime dependencies
+- ✅ **Conditional exports** - Automatically loads correct implementation for your environment
+- ✅ **ESM-only** - Modern JavaScript modules
+- ✅ **Cross-platform** - Works in Node.js, browsers, and Deno
+- ✅ **TypeScript support** - Full type definitions included
+
 ## Usage
 
 https://jsr.io/@tani/unasync

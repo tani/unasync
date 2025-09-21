@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["ESNext", "DOM", "WebWorker", "ESNext.Disposable"],
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true
+  },
+  "files": ["src/index.ts", "src/node-worker.ts", "src/web-worker.ts", "src/serializer.ts"],
+  "exclude": ["node_modules", "example", "test", "**/*.test.js", "**/*.spec.js"]
+}

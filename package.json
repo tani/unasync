@@ -1,0 +1,76 @@
+{
+  "name": "unasync",
+  "version": "1.1.0",
+  "description": "Synchronously execute asynchronous functions on browsers, Node.js, and Deno",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "node": {
+        "types": "./dist/node-worker.d.ts",
+        "default": "./dist/node-worker.js"
+      },
+      "browser": {
+        "types": "./dist/web-worker.d.ts",
+        "default": "./dist/web-worker.js"
+      },
+      "worker": {
+        "types": "./dist/web-worker.d.ts",
+        "default": "./dist/web-worker.js"
+      },
+      "default": "./dist/index.js"
+    },
+    "./node": {
+      "types": "./dist/node-worker.d.ts",
+      "default": "./dist/node-worker.js"
+    },
+    "./web": {
+      "types": "./dist/web-worker.d.ts",
+      "default": "./dist/web-worker.js"
+    },
+    "./serializer": {
+      "types": "./dist/serializer.d.ts",
+      "default": "./dist/serializer.js"
+    }
+  },
+  "files": [
+    "dist/",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test test/**/*.test.js",
+    "test:watch": "node --test --watch test/**/*.test.js",
+    "prepublishOnly": "npm run build && npm run test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tani/unasync.git"
+  },
+  "keywords": [
+    "async",
+    "sync",
+    "worker",
+    "thread",
+    "synchronous",
+    "asynchronous",
+    "SharedArrayBuffer"
+  ],
+  "author": "TANIGUCHI Masaya",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tani/unasync/issues"
+  },
+  "homepage": "https://github.com/tani/unasync#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
