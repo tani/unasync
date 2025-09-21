@@ -15,6 +15,6 @@
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true
   },
-  "files": ["src/index.ts", "src/node-worker.ts", "src/web-worker.ts", "src/serializer.ts"],
+  "files": ["src/index.ts"],
   "exclude": ["node_modules", "example", "test", "**/*.test.js", "**/*.spec.js"]
 }

@@ -1,6 +1,6 @@
 {
   "name": "unasync",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Synchronously execute asynchronous functions on browsers, Node.js, and Deno",
   "type": "module",
   "main": "./dist/index.js",
@@ -8,27 +8,7 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "node": {
-        "types": "./dist/node-worker.d.ts",
-        "default": "./dist/node-worker.js"
-      },
-      "browser": {
-        "types": "./dist/web-worker.d.ts",
-        "default": "./dist/web-worker.js"
-      },
-      "worker": {
-        "types": "./dist/web-worker.d.ts",
-        "default": "./dist/web-worker.js"
-      },
       "default": "./dist/index.js"
-    },
-    "./node": {
-      "types": "./dist/node-worker.d.ts",
-      "default": "./dist/node-worker.js"
-    },
-    "./web": {
-      "types": "./dist/web-worker.d.ts",
-      "default": "./dist/web-worker.js"
     },
     "./serializer": {
       "types": "./dist/serializer.d.ts",
@@ -42,14 +22,15 @@
   ],
   "scripts": {
     "build": "tsc",
-    "test": "node --test test/**/*.test.js",
-    "test:watch": "node --test --watch test/**/*.test.js",
-    "prepublishOnly": "npm run build && npm run test"
+    "test": "npm run build && node --test test/**/*.test.js",
+    "prepublishOnly": "npm test"
   },
-  "dependencies": {},
+  "dependencies": {
+    "web-worker": "^1.5.0"
+  },
   "devDependencies": {
-    "typescript": "^5.0.0",
-    "@types/node": "^20.0.0"
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
   },
   "repository": {
     "type": "git",

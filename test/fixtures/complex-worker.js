@@ -1,4 +1,4 @@
-import { runAsWorker } from '../../dist/node-worker.js';
+import { runAsWorker } from '../../dist/index.js';
 
 runAsWorker(async (data) => {
   return {
